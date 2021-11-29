@@ -1,0 +1,73 @@
+<p></p>
+<p></p>
+<div class="container">
+  <div class="card">
+    <div class="card-header text-white bg-primary">Meteo Componenet</div>
+    <div class="card-body">
+
+
+      <div class="form-group">
+        <label>Ville:</label>
+        <input type="text" name="city" [(ngModel)]="city" ngModel required >
+        <button type="submit" class="btn btn-primary" (click)="onLoadMeteo()">Chercher</button>
+      </div>
+
+
+      <!--
+           <div *ngIf="pagePhoto">
+         <div *ngFor="let p of pagePhoto.hits">
+             <div class="card">
+             <div class="card-header">{{p.tags}}</div>
+             <div class="card-body">
+             <img src="{{p.previewURL}}">
+             </div>
+             </div>
+
+         </div>
+        </div>
+      -->  <div class="list-group" *ngIf="dataMeteo">
+      <label class="control-label">City:</label><strong>{{dataMeteo.city.name}}</strong> <br>
+      <label class="control-label">country:</label><strong>{{dataMeteo.city.country}}</strong><br>
+
+      <label class="control-label">Longitude:</label><strong>{{dataMeteo.city.coord.lon}}</strong><br>
+      <label class="control-label">Latitude:</label><strong>{{dataMeteo.city.coord.lat}}</strong><br>
+
+      <label class="control-label">Population:</label><strong>{{dataMeteo.city.population|number:'0.0'}}</strong><br>
+
+
+      <div class="row">
+        <div *ngFor="let m of dataMeteo.list" class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <img src="assets/images/{{m.weather[0].main}}.png" width="80" height="80">
+
+            </div>
+            <div class="card-body">
+              <div>
+                <p>Date:<strong>{{m.dt*1000|date:'dd/MM/yyyy-HH-mm'}}</strong></p>
+                <p>Min:<strong>{{m.main.temp_min - 273.15 |number:'0.0'}}</strong></p>
+                <p>Max:<strong>{{m.main.temp_max -273.15 |number:'0.0'}}</strong></p>
+                <p>Pression:<strong>{{m.main.pressure |number:'0.0'}}</strong></p>
+                <p>humidity:<strong>{{m.main.humidity |number:'0.0'}}</strong></p>
+
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+    </div>
+
+  </div>
+</div>
+
+

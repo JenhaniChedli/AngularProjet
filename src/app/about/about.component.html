@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">About Component</div>
+    <div class="panel-body">
+      <ul class="">
+        <li>Nom : {{info.nom}}</li>
+        <li>Email : {{info.email}}</li>
+        <li>Tel : {{info.tel}}</li>
+      </ul>
+
+    </div>
+    <div>
+      <div>
+        <!-- <div class="form-group">
+                <label class="control-label">Message:</label>
+                <input type="text" [(ngModel)]="commentaire.message">
+                <button [disabled]="!commentaire.message" class="btn btn-primary" (click)="onAddCommentaires()">Add Comments</button>
+            </div>  -->
+
+        <form #f="ngForm" (ngSubmit)="onAddCommentaires(f.value)">
+          <div class="form-group">
+            <label class="control-label">Message:</label>
+            <input required="" name="message" ngModel type="text" [(ngModel)]="commentaire.message">
+            <button [disabled]="!f.valid"  class="btn btn-primary" type="submit" >Add Comments</button>
+          </div>
+        </form>
+      </div>
+      <h3>Commentaires:</h3>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let c of comments" [ngClass]="{'text-danger':c.message==='A'}"  >
+          <!--[ngClass]="{'text-danger':c.message==='A'}"-->
+          <!--[ngClass]="{'text-success':true}">-->
+          <!--[ngStyle]="{'background-color':c.message==='salam'?'red':'green'}">-->
+          {{c.message}},
+          <span class="badge badge-primary">{{c.date|date:'dd/MM/yyyy :HH:mm:ss'}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

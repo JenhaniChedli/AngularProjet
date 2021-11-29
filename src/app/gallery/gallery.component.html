@@ -1,0 +1,61 @@
+<p></p>
+<div class="container">
+  <div class="card">
+    <div class="card-header text-white bg-primary">Gallery Componenet</div>
+    <div class="card-body">
+      <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
+
+        <div class="form-group">
+          <label>Mot clé:</label>
+          <input type="text" name="motCle" [(ngModel)]="motCle" ngModel required >
+          <button type="submit" class="btn btn-primary">Chercher</button>
+        </div>
+
+      </form>
+      <!--
+           <div *ngIf="pagePhoto">
+         <div *ngFor="let p of pagePhoto.hits">
+             <div class="card">
+             <div class="card-header">{{p.tags}}</div>
+             <div class="card-body">
+             <img src="{{p.previewURL}}">
+             </div>
+             </div>
+
+         </div>
+        </div>
+      -->  <div class="row">
+      <div *ngFor="let p of pagePhoto?.hits" class="col-md-3">
+        <div class="card">
+          <div class="card-header">
+            <p>Tags:{{p.tags}}</p>
+
+          </div>
+          <div class="card-body">
+            <div>
+              <p>User:{{p.user}}</p>
+
+            </div>
+            <img src="{{p.previewURL}}" width="80" height="80">
+          </div>
+        </div>
+
+      </div>
+    </div>
+      <div class="row">
+        <div>
+          <ul class="nav nav-pills">
+            <li [ngClass]="{'active':currentPage==(i+1)}" class="clickable" *ngFor="let page of pages;let i=index">
+              <a class="nav-link"(click)="goToPage(i+1)">{{i+1}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+
